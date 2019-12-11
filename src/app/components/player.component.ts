@@ -18,11 +18,11 @@ import {GLOBAL} from '../services/global';
       <span id="play-song-title">
         {{song.name}}
       </span>
-      <span id="play-song-artist">
+      <!--      <span id="play-song-artist">
         <small *ngIf="song.artist">
           {{song.album.artist.name}}
         </small>
-      </span>
+      </span>-->
       <audio controls id="player">
         <source id="mp3_source" src="{{ url + 'get-song-file/' + song.file }}" type="audio/mpeg" />
         Tu navegador no es compatible con HTML5
