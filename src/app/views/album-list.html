@@ -1,0 +1,34 @@
+<h1>
+  {{titulo}}
+</h1>
+
+<div class="clearfix"></div>
+
+<div id="gallery-albums" *ngIf="albums">
+  <!--LISTAR LOS ALBUMS-->
+
+
+  <ul class="album-list pagination" style="height: 100%;">
+    <li *ngFor="let album of albums" class="col-sm-3 album-item">
+      <div class="album-image">
+        <img src="{{ url + 'get-image-album/' + album.image }}"/>
+      </div>
+      <div class="album-name">
+        <a [routerLink]="['/album', album._id]">{{album.title}}</a>
+        <a [routerLink]="['/artista', album.artist._id]"><small>({{album.artist.name}})</small></a>
+
+        <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN' && !confirmado">
+          <a class="btn btn-sm btn-warning" [routerLink]="['/editar-album', album._id]">Editar</a>
+          <a (click)="onDeleteConfirm(album._id)" class="btn btn-sm btn-danger">Borrar</a>
+        </div>
+
+        <div class="seguro" *ngIf="confirmado">
+          <a (click)="onDeleteAlbum(album._id)" class="btn btn-sm btn-danger">Borrar</a>
+          <a (click)="onCancelAlbum()" class="btn btn-sm btn-primary">Cancelar</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+
+</div>
